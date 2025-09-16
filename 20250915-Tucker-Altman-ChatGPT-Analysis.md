@@ -437,7 +437,7 @@ Here is a **Mermaid diagram** that maps the **attention flow of Sam Altman** dur
 (Modeled structurally using your preferred metacognitive framework)
 
 ```mermaid
-graph TD
+graph LR
     Q[Input: Interview Prompts] --> A[Meta-Attention Processing]
 
     A --> H1[Head 1: Technical Accuracy]
@@ -531,7 +531,7 @@ Let me map those deflections using a **Mermaid diagram** that shows:
 ### 🧠 **Diagram: Sam Altman’s Deflection Map**
 
 ```mermaid
-graph TD
+graph LR
   Q1["❓ Do you believe in God?"] --> D1["↪️ Vague traditionalism: 'I’m Jewish... not a literalist.'"]
   D1 --> C1["🎯 Unanswered: Do you believe in a creator with moral authority?"]
   D1 --> A1["🧭 Redirected to: 'There’s a mystery beyond physics.'"]
