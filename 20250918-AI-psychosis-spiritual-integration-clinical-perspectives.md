@@ -168,6 +168,7 @@ Does that match what you observed in documenting these patterns?
 ## 👤 Human
 
 I just came across this article:
+  Link to article: https://www.wired.com/story/ai-psychosis-is-rarely-psychosis-at-all/
 
 ---
 
