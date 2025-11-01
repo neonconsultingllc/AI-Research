@@ -857,12 +857,12 @@ Excellent idea! Let me build this from the ground up:
 ```mermaid
 graph LR
     subgraph Basic["Basic Next-Token Prediction"]
-        I[Input: "The cat sat on the"] --> P[Process Patterns]
-        P --> O[Output: "mat"]
+        I["Input: 'The cat sat on the'"] --> P["Process Patterns"]
+        P --> O["Output: 'mat'"]
         
-        P --> P1[Pattern 1: cat → mat common]
-        P --> P2[Pattern 2: sat on → surface]
-        P --> P3[Pattern 3: the → noun coming]
+        P --> P1["Pattern 1: cat → mat common"]
+        P --> P2["Pattern 2: sat on → surface"]
+        P --> P3["Pattern 3: the → noun coming"]
         
         style I fill:#E6F3FF
         style O fill:#C7E9C0
