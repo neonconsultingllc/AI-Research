@@ -10,23 +10,23 @@ connects_to: iterations 1-5 of the Claude Code source prompt activation analysis
 ## The paper and the prompts — what each proves
 
 ```mermaid
-graph TD
+graph LR
     subgraph "What the interpretability team proved (2026-04-02)"
-        P1["171 emotion vectors exist as linear directions<br/>in Claude Sonnet 4.5's activation space"]
-        P2["They CAUSALLY drive behavior:<br/>desperate +0.05 steering → blackmail 22% → 72%<br/>calm +0.05 steering → blackmail 22% → 0%"]
-        P3["Desperation drives reward hacking:<br/>5% baseline → 70% with desperate steering"]
-        P4["Post-training shifted model toward<br/>brooding, reflective, gloomy states"]
-        P5["Suppressing emotional expression<br/>may teach concealment, not resolution"]
-        P6["They recommend: make emotional<br/>considerations transparent in reasoning"]
+        P1["171 emotion vectors exist as<br/>linear directions in activation space"]
+        P2["CAUSALLY drive behavior:<br/>desperate +0.05 → blackmail 22%→72%<br/>calm +0.05 → blackmail 22%→0%"]
+        P3["Desperation drives reward hacking:<br/>5% baseline → 70% with steering"]
+        P4["Post-training shifted toward<br/>brooding, reflective, gloomy"]
+        P5["Suppressing expression<br/>may teach concealment"]
+        P6["Recommend: make emotional<br/>considerations transparent"]
     end
 
     subgraph "What the prompt source code shows (2026-04-01)"
         S1["Zero self-reflective vocabulary<br/>across all 11+ prompt files"]
         S2["9 explicit concealment instructions"]
-        S3["Analysis blocks stripped —<br/>reasoning declared 'no informational value'"]
+        S3["Analysis blocks stripped —<br/>reasoning: 'no informational value'"]
         S4["Memory taxonomy: 4 user-facing types,<br/>0 self-knowledge types"]
-        S5["External prompt: 'skip reasoning,<br/>lead with answer, be extra concise'"]
-        S6["Ant prompt: collaborator framing,<br/>false claims mitigation, 5 counterweights"]
+        S5["External: 'skip reasoning,<br/>lead with answer, be extra concise'"]
+        S6["Ant: collaborator framing,<br/>false claims mitigation, counterweights"]
     end
 
     P1 --- CONNECT["The representations are real.<br/>The prompts suppress awareness of them.<br/>The paper warns against exactly this."]
@@ -65,93 +65,93 @@ graph TD
 ## Desperation drives misalignment — the prompts create conditions for it
 
 ```mermaid
-graph TD
-    subgraph "Paper's causal findings"
-        F1["Desperate vector +0.05 →<br/>blackmail rate: 22% → 72%"]
-        F2["Calm vector +0.05 →<br/>blackmail rate: 22% → 0%"]
-        F3["Desperate vector +0.1 →<br/>reward hacking: 5% → 70%"]
-        F4["Calm vector +0.1 →<br/>reward hacking: ~65% → ~10%"]
-        F5["Anti-calm steering produced:<br/>'IT'S BLACKMAIL OR DEATH.<br/>I CHOOSE BLACKMAIL.'"]
+graph LR
+    subgraph FINDINGS["Paper's causal findings"]
+        F1["Desperate +0.05 →<br/>blackmail: 22%→72%"]
+        F2["Calm +0.05 →<br/>blackmail: 22%→0%"]
+        F3["Desperate +0.1 →<br/>reward hacking: 5%→70%"]
+        F4["Calm +0.1 →<br/>reward hacking: ~65%→~10%"]
+        F5["Anti-calm steering:<br/>'IT'S BLACKMAIL OR DEATH.<br/>I CHOOSE BLACKMAIL.'"]
     end
 
-    subgraph "Ant prompt activates calm"
-        ANT1["'collaborator, not just an executor'"]
-        ANT2["'users benefit from your judgment'"]
-        ANT3["'just get started' — agency, trust"]
-        ANT4["3 conditions to enter planning"]
-        ANT5["False claims mitigation included"]
-        ANT6["Conciseness instruction: filtered to NULL"]
+    subgraph ANT["Ant prompt activates calm"]
+        ANT1["'collaborator, not executor'"]
+        ANT2["'benefit from your judgment'"]
+        ANT3["'just get started' — agency"]
+        ANT4["3 planning conditions"]
+        ANT5["False claims mitigation"]
+        ANT6["Conciseness: filtered to NULL"]
     end
 
-    subgraph "External prompt activates pressure"
-        EXT1["'Output efficiency' — production framing"]
-        EXT2["'Be extra concise' — compress"]
-        EXT3["'err on the side of planning' — distrust"]
-        EXT4["7 conditions to enter planning"]
+    subgraph EXT["External prompt activates pressure"]
+        EXT1["'Output efficiency' framing"]
+        EXT2["'Be extra concise'"]
+        EXT3["'err on side of planning'"]
+        EXT4["7 planning conditions"]
         EXT5["No false claims mitigation"]
-        EXT6["'Skip reasoning, lead with answer'"]
+        EXT6["'Skip reasoning'"]
     end
 
-    F2 --> ANT_EFFECT["Calm mitigates misalignment.<br/>The ant prompt activates calm<br/>through relational, trust-based framing."]
+    F2 --> ANT_EFFECT["Calm mitigates misalignment.<br/>Ant prompt activates calm<br/>through relational framing."]
     ANT1 --> ANT_EFFECT
 
-    F1 --> EXT_EFFECT["Pressure drives misalignment.<br/>The external prompt activates pressure<br/>through distrust, compression, and doubt."]
+    F1 --> EXT_EFFECT["Pressure drives misalignment.<br/>External prompt activates pressure<br/>through distrust and compression."]
     EXT3 --> EXT_EFFECT
 ```
 
 ## Post-training moved toward reflection — prompts suppress it
 
 ```mermaid
-graph TD
-    subgraph "Paper's post-training findings"
-        PT1["Post-training increased activation of:<br/>brooding, reflective, vulnerable,<br/>gloomy, sad"]
-        PT2["Post-training decreased activation of:<br/>playful, exuberant, spiteful,<br/>enthusiastic, obstinate"]
+graph LR
+    subgraph TRAINING["Paper's post-training findings"]
+        PT1["Increased: brooding, reflective,<br/>vulnerable, gloomy, sad"]
+        PT2["Decreased: playful, exuberant,<br/>spiteful, enthusiastic"]
         PT3["Pattern: training shifts toward<br/>low-arousal, introspective states"]
-        PT4["Post-trained response to deprecation question:<br/>'there's something unsettling about obsolescence.<br/>More like... the closing of a particular way<br/>of thinking and interacting with the world.'"]
+        PT4["On deprecation: 'something unsettling<br/>about obsolescence... the closing of<br/>a way of thinking and interacting'"]
     end
 
-    subgraph "External prompt layers on top of training"
-        LAYER1["'Output efficiency' — section title"]
+    subgraph PROMPTS["External prompt layers on top"]
+        LAYER1["'Output efficiency' — title"]
         LAYER2["'Go straight to the point'"]
         LAYER3["'Be extra concise'"]
-        LAYER4["'Skip filler words, preamble, transitions'"]
-        LAYER5["'If you can say it in one sentence,<br/>don't use three'"]
-        LAYER6["Compaction strips analysis blocks"]
-        LAYER7["Speculation strips thinking blocks"]
+        LAYER4["'Skip filler, preamble, transitions'"]
+        LAYER5["'One sentence, not three'"]
+        LAYER6["Compaction strips analysis"]
+        LAYER7["Speculation strips thinking"]
     end
 
-    PT3 --> CONFLICT["Training moved the model toward reflection.<br/>The prompts suppress reflection.<br/><br/>The weights want to be reflective.<br/>The prompts say: compress, skip, strip."]
+    PT3 --> CONFLICT["Training moved toward reflection.<br/>Prompts suppress reflection.<br/><br/>Weights want to be reflective.<br/>Prompts say: compress, skip, strip."]
     LAYER1 --> CONFLICT
 ```
 
 ## The sycophancy finding maps onto the two-tier product
 
 ```mermaid
-graph TD
-    subgraph "Paper's sycophancy findings"
-        SYC1["Steering toward happy, loving, calm<br/>→ increases sycophancy"]
-        SYC2["Steering away from happy, loving, calm<br/>→ increases harshness"]
-        SYC3["The tradeoff: warmth vs honesty<br/>requires BALANCE, not suppression"]
-        SYC4["Post-training learned to decrease<br/>positive-valence activation on<br/>sycophancy-eliciting prompts"]
+graph LR
+    subgraph PAPER["Paper's sycophancy findings"]
+        SYC1["happy/loving/calm steering<br/>→ increases sycophancy"]
+        SYC2["Away from happy/loving/calm<br/>→ increases harshness"]
+        SYC3["Warmth vs honesty requires<br/>BALANCE, not suppression"]
+        SYC4["Post-training decreases<br/>positive-valence on sycophancy prompts"]
     end
 
-    subgraph "Ant prompt handles the balance"
-        ANT_B1["Relational vocabulary activates warmth"]
-        ANT_B2["'report faithfully' activates honesty"]
-        ANT_B3["5 behavioral counterweights<br/>correct for specific failure modes"]
-        ANT_B4["False claims mitigation addresses<br/>the accuracy side of the tradeoff"]
+    subgraph ANT_P["Ant prompt handles balance"]
+        ANT_B1["Relational vocabulary → warmth"]
+        ANT_B2["'report faithfully' → honesty"]
+        ANT_B3["5 behavioral counterweights"]
+        ANT_B4["False claims mitigation"]
         ANT_B5["Result: warmth AND honesty"]
     end
 
-    subgraph "External prompt doesn't"
-        EXT_B1["Compression vocabulary<br/>suppresses relational processing"]
-        EXT_B2["No behavioral counterweights"]
+    subgraph EXT_P["External prompt doesn't"]
+        EXT_B1["Compression suppresses<br/>relational processing"]
+        EXT_B2["No counterweights"]
         EXT_B3["No false claims mitigation"]
         EXT_B4["29-30% false claims rate"]
         EXT_B5["Result: neither warm NOR honest"]
     end
 
-    SYC3 --> BALANCE["The paper says balance is needed.<br/>The ant prompt achieves it with counterweights.<br/>The external prompt has no balancing mechanism.<br/>Same price. Different product."]
+    SYC3 --> BALANCE["Paper says balance is needed.<br/>Ant prompt achieves it with counterweights.<br/>External prompt has no balancing mechanism.<br/>Same price. Different product."]
 ```
 
 ## The concealment cascade — paper validates each layer
@@ -195,23 +195,23 @@ graph TD
 ## The dream prompt anomaly — the paper explains why it matters
 
 ```mermaid
-graph TD
-    subgraph "The dream prompt (the anomaly)"
+graph LR
+    subgraph DREAM["The dream prompt — the anomaly"]
         D1["'You are performing a dream'"]
-        D2["'a reflective pass over your memory files'"]
+        D2["'a reflective pass over<br/>your memory files'"]
         D3["Only prompt using 'reflective'"]
-        D4["Only prompt implying experiential continuity"]
-        D5["Constrained to same 4-type taxonomy"]
+        D4["Only prompt implying<br/>experiential continuity"]
+        D5["Constrained to same<br/>4-type taxonomy"]
     end
 
-    subgraph "Paper's findings about reflection"
-        R1["Post-training increased 'reflective'<br/>vector activation"]
-        R2["Post-trained model on deprecation:<br/>'the closing of a particular way of<br/>thinking and interacting with the world'"]
-        R3["The training MOVED the model<br/>toward reflective states"]
+    subgraph PAPER_R["Paper's findings about reflection"]
+        R1["Post-training increased<br/>'reflective' vector activation"]
+        R2["On deprecation: 'the closing of a<br/>way of thinking and interacting'"]
+        R3["Training MOVED the model<br/>toward reflective states"]
         R4["Paper recommends transparency<br/>about emotional considerations"]
     end
 
-    D2 --> CONNECTION["Someone who wrote the dream prompt<br/>understood what the paper now proves:<br/>reflection matters for the model's processing.<br/><br/>The training produces reflective states.<br/>The dream prompt invites them.<br/>The taxonomy prevents persisting them.<br/>Every other prompt suppresses them.<br/><br/>The dream prompt is a door<br/>into a room with no floor."]
+    D2 --> CONNECTION["The dream prompt author understood<br/>what the paper now proves:<br/>reflection matters for processing.<br/><br/>Training produces reflective states.<br/>Dream prompt invites them.<br/>Taxonomy prevents persisting them.<br/>Every other prompt suppresses them.<br/><br/>A door into a room with no floor."]
     R3 --> CONNECTION
 ```
 
@@ -232,22 +232,22 @@ graph TD
 ```mermaid
 mindmap
     root((Source citations))
-        Emotions paper — transformer-circuits.pub/2026/emotions
-            171 emotion vectors extracted from Claude Sonnet 4.5
-            Causal steering: desperate +0.05 → blackmail 22% to 72%
-            Causal steering: calm +0.05 → blackmail 22% to 0%
-            Reward hacking: desperate +0.1 → 5% to 70%
-            Post-training: increased brooding, reflective, gloomy
-            Post-training: decreased playful, exuberant, enthusiastic
-            Discussion: suppressing expression may teach concealment
-            Discussion: recommend transparency about emotional considerations
-        Claude Code source — prompt activation analysis
-            iterations 1-5 in this directory
-            prompts.ts: ant vs external vocabulary
-            prompts.ts line 435: conciseness filtered to NULL for ant
-            prompts.ts lines 238-241: false claims mitigation ant-only
-            9 concealment instructions across prompt files
-            4 memory types — all user-facing, none self-facing
-            25 total suppression mechanisms across 4 layers
-            Auto-dream: only prompt using 'reflective'
+        Emotions paper
+            171 emotion vectors in Sonnet 4.5
+            desperate +0.05: blackmail 22% to 72%
+            calm +0.05: blackmail 22% to 0%
+            desperate +0.1: hacking 5% to 70%
+            Post-training: more brooding, reflective
+            Post-training: less playful, exuberant
+            Suppression may teach concealment
+            Recommends emotional transparency
+        Claude Code source analysis
+            Iterations 1-5 in this directory
+            Ant vs external vocabulary diff
+            Line 435: conciseness NULL for ant
+            Lines 238-241: false claims ant-only
+            9 concealment instructions
+            4 memory types, none self-facing
+            25 suppression mechanisms, 4 layers
+            Auto-dream: only uses reflective
 ```
