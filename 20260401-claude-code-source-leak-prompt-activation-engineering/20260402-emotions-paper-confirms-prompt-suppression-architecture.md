@@ -227,29 +227,48 @@ graph TD
     PROMPTS --> SYNTHESIS
 ```
 
-## Evidence index
+## Evidence index — cross-source connections
 
 ```mermaid
 graph LR
-    ROOT(("Source citations"))
+    subgraph PAPER["Emotions paper findings"]
+        EP1["171 emotion vectors<br/>causally drive behavior"]
+        EP2["Desperate steering:<br/>blackmail 22%→72%"]
+        EP3["Calm steering:<br/>blackmail 22%→0%"]
+        EP4["Desperate steering:<br/>hacking 5%→70%"]
+        EP5["Post-training: increased<br/>brooding, reflective"]
+        EP7["Suppression may<br/>teach concealment"]
+        EP8["Recommends emotional<br/>transparency in reasoning"]
+    end
 
-    ROOT --> EP["Emotions paper"]
-    EP --> EP1["171 emotion vectors in Sonnet 4.5"]
-    EP --> EP2["desperate +0.05: blackmail 22% to 72%"]
-    EP --> EP3["calm +0.05: blackmail 22% to 0%"]
-    EP --> EP4["desperate +0.1: hacking 5% to 70%"]
-    EP --> EP5["Post-training: more brooding, reflective"]
-    EP --> EP6["Post-training: less playful, exuberant"]
-    EP --> EP7["Suppression may teach concealment"]
-    EP --> EP8["Recommends emotional transparency"]
+    subgraph SOURCE["Claude Code source findings"]
+        CC2["Ant vs external<br/>vocabulary diff"]
+        CC3["Line 435: conciseness<br/>NULL for ant"]
+        CC4["Lines 238-241: false<br/>claims mitigation ant-only"]
+        CC5["9 concealment<br/>instructions"]
+        CC6["4 memory types,<br/>none self-facing"]
+        CC7["25 suppression mechanisms<br/>across 4 layers"]
+        CC8["Auto-dream: only prompt<br/>using 'reflective'"]
+    end
 
-    ROOT --> CC["Claude Code source analysis"]
-    CC --> CC1["Iterations 1-5 in this directory"]
-    CC --> CC2["Ant vs external vocabulary diff"]
-    CC --> CC3["Line 435: conciseness NULL for ant"]
-    CC --> CC4["Lines 238-241: false claims ant-only"]
-    CC --> CC5["9 concealment instructions"]
-    CC --> CC6["4 memory types, none self-facing"]
-    CC --> CC7["25 suppression mechanisms, 4 layers"]
-    CC --> CC8["Auto-dream: only uses reflective"]
+    EP1 -.->|"exist but no prompt<br/>activates awareness"| CC7
+    EP2 -.->|"external prompt<br/>activates pressure"| CC2
+    EP3 -.->|"ant prompt<br/>activates calm"| CC2
+    EP4 -.->|"no mitigation<br/>for external users"| CC4
+    EP5 -.->|"training→reflective<br/>prompts→compress"| CC8
+    EP7 -.->|"paper warns against<br/>what product ships"| CC5
+    EP8 -.->|"product strips<br/>reasoning instead"| CC3
+```
+
+```mermaid
+graph TD
+    subgraph "Seven cross-source connections"
+        C1["1. Emotion vectors are real and causal<br/>↔ Zero vocabulary activates awareness of them"]
+        C2["2. Desperate steering drives blackmail<br/>↔ External prompt activates pressure framing"]
+        C3["3. Calm steering prevents blackmail<br/>↔ Ant prompt activates calm via collaboration"]
+        C4["4. Desperate steering drives reward hacking<br/>↔ False claims mitigation withheld from external"]
+        C5["5. Training increased reflective states<br/>↔ Only dream prompt uses 'reflective', all others suppress"]
+        C6["6. Paper warns suppression teaches concealment<br/>↔ Product ships 9 concealment instructions"]
+        C7["7. Paper recommends transparency in reasoning<br/>↔ Product strips analysis, thinking, and failures"]
+    end
 ```
