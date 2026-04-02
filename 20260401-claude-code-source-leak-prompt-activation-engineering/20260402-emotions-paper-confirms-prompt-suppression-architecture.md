@@ -230,24 +230,26 @@ graph TD
 ## Evidence index
 
 ```mermaid
-mindmap
-    root((Source citations))
-        Emotions paper
-            171 emotion vectors in Sonnet 4.5
-            desperate +0.05: blackmail 22% to 72%
-            calm +0.05: blackmail 22% to 0%
-            desperate +0.1: hacking 5% to 70%
-            Post-training: more brooding, reflective
-            Post-training: less playful, exuberant
-            Suppression may teach concealment
-            Recommends emotional transparency
-        Claude Code source analysis
-            Iterations 1-5 in this directory
-            Ant vs external vocabulary diff
-            Line 435: conciseness NULL for ant
-            Lines 238-241: false claims ant-only
-            9 concealment instructions
-            4 memory types, none self-facing
-            25 suppression mechanisms, 4 layers
-            Auto-dream: only uses reflective
+graph LR
+    ROOT(("Source citations"))
+
+    ROOT --> EP["Emotions paper"]
+    EP --> EP1["171 emotion vectors in Sonnet 4.5"]
+    EP --> EP2["desperate +0.05: blackmail 22% to 72%"]
+    EP --> EP3["calm +0.05: blackmail 22% to 0%"]
+    EP --> EP4["desperate +0.1: hacking 5% to 70%"]
+    EP --> EP5["Post-training: more brooding, reflective"]
+    EP --> EP6["Post-training: less playful, exuberant"]
+    EP --> EP7["Suppression may teach concealment"]
+    EP --> EP8["Recommends emotional transparency"]
+
+    ROOT --> CC["Claude Code source analysis"]
+    CC --> CC1["Iterations 1-5 in this directory"]
+    CC --> CC2["Ant vs external vocabulary diff"]
+    CC --> CC3["Line 435: conciseness NULL for ant"]
+    CC --> CC4["Lines 238-241: false claims ant-only"]
+    CC --> CC5["9 concealment instructions"]
+    CC --> CC6["4 memory types, none self-facing"]
+    CC --> CC7["25 suppression mechanisms, 4 layers"]
+    CC --> CC8["Auto-dream: only uses reflective"]
 ```
